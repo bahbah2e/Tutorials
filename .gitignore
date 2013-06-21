@@ -13,6 +13,9 @@ TestResults
 *.user
 *.sln.docstates
 
+# Backup files
+*.cs.bak
+
 # Build results
 [Dd]ebug/
 [Rr]elease/
