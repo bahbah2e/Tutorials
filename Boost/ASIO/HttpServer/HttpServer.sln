@@ -3,16 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HttpServer", "HttpServer.vcxproj", "{D81F3250-14CE-4001-A4A7-324F5F77E076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient", "..\HttpClient\HttpClient.csproj", "{5FF9829F-E88A-499D-8FFB-B681B840C33D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Debug|Win32.Build.0 = Debug|Win32
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Release|Any CPU.ActiveCfg = Release|Win32
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Release|Win32.ActiveCfg = Release|Win32
 		{D81F3250-14CE-4001-A4A7-324F5F77E076}.Release|Win32.Build.0 = Release|Win32
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5FF9829F-E88A-499D-8FFB-B681B840C33D}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
