@@ -61,8 +61,8 @@ void request_handler::handle_request(const request& req, reply& rep)
   if (req.method=="PUT")
   {
 	  // Fill out the reply to be sent to the client.
+	  std::cout << req.content;
 	  rep.status = reply::ok;
-	  rep.content= req.content + " RECEIVED";
 	  rep.headers.resize(2);
 	  rep.headers[0].name = "Content-Length";
 	  rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
