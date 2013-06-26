@@ -42,7 +42,7 @@ void request_handler::handle_request(const request& req, reply& rep)
     rep = reply::stock_reply(reply::bad_request);
     return;
   }
-
+  
   // If path ends in slash (i.e. is a directory) then add "index.html".
   if (request_path[request_path.size() - 1] == '/')
   {
@@ -58,6 +58,19 @@ void request_handler::handle_request(const request& req, reply& rep)
     extension = request_path.substr(last_dot_pos + 1);
   }
 
+  if (req.method=="PUT")
+  {
+	  // Fill out the reply to be sent to the client.
+	  rep.status = reply::ok;
+	  rep.content= req.content + " RECEIVED";
+	  rep.headers.resize(2);
+	  rep.headers[0].name = "Content-Length";
+	  rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
+	  rep.headers[1].name = "Content-Type";
+	  rep.headers[1].value = mime_types::extension_to_type(extension); 
+	  return;
+  }
+  
   // Open the file to send back.
   std::string full_path = doc_root_ + request_path;
   std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);

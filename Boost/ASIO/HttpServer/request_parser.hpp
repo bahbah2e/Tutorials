@@ -13,6 +13,7 @@
 
 #include <boost/logic/tribool.hpp>
 #include <boost/tuple/tuple.hpp>
+#include <boost/lexical_cast.hpp>
 
 namespace http {
 namespace server {
@@ -41,7 +42,12 @@ public:
     {
       boost::tribool result = consume(req, *begin++);
       if (result || !result)
-        return boost::make_tuple(result, begin);
+	  {
+		  int contentLen = boost::lexical_cast<int>(req.headers[2].value);
+		  std::string content = begin;
+		  req.content = content.substr(0, contentLen);
+		  return boost::make_tuple(result, begin);
+	  }
     }
     boost::tribool result = boost::indeterminate;
     return boost::make_tuple(result, begin);
