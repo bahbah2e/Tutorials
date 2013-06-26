@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HttpClient.Test
+﻿namespace HttpClient.Test
 {
-    class TestSimulator
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class TestSimulator
     {
+        [TestMethod]
+        public void test_simulator()
+        {
+            EmploymentSimulator simulator = new EmploymentSimulator();
+            simulator.PutEmployee();
+        }
     }
 }
