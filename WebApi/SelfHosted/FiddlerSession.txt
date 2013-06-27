@@ -11,3 +11,46 @@ Server: Microsoft-HTTPAPI/2.0
 Date: Thu, 27 Jun 2013 20:54:23 GMT
 
 [{"Id":1,"Name":"Don","Title":"Marketing Director"}]
+
+POST /Services/Employee/ HTTP/1.1
+User-Agent: Fiddler
+Host: 127.0.0.1:8001
+Content-type: text/json
+Content-Length: 43
+
+{"Id":2,"Name":"Peggy","Title":"Secretary"}
+
+HTTP/1.1 204 No Content
+Content-Length: 0
+Server: Microsoft-HTTPAPI/2.0
+Date: Thu, 27 Jun 2013 21:15:30 GMT
+
+GET /Services/Employee/2 HTTP/1.1
+User-Agent: Fiddler
+Host: 127.0.0.1:8001
+Content-type: text/json
+
+
+HTTP/1.1 200 OK
+Content-Length: 43
+Content-Type: text/json; charset=utf-8
+Server: Microsoft-HTTPAPI/2.0
+Date: Thu, 27 Jun 2013 21:15:47 GMT
+
+{"Id":2,"Name":"Peggy","Title":"Secretary"}
+
+PUT /Services/Employee/2 HTTP/1.1
+User-Agent: Fiddler
+Host: 127.0.0.1:8001
+Content-type: text/json
+Content-Length: 43
+
+{"Id":2,"Name":"Peggy","Title":"Marketing"}
+
+HTTP/1.1 200 OK
+Content-Length: 43
+Content-Type: text/json; charset=utf-8
+Server: Microsoft-HTTPAPI/2.0
+Date: Thu, 27 Jun 2013 21:20:26 GMT
+
+{"Id":2,"Name":"Peggy","Title":"Marketing"}
