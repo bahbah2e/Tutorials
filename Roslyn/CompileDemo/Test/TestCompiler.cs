@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompileDemo.Test
+﻿namespace CompileDemo.Test
 {
-    class TestCompiler
+    using System;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class TestCompiler
     {
+        [TestMethod]
+        public void test_compile_file()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                using (var compiler = new Compiler())
+                {
+                    Type[] types = compiler.Build("Test\\adder.cs");
+                    Assert.AreEqual(types.Length, 1);
+                    Assert.AreEqual(types[0].Name, "Adder");
+                    Assert.AreEqual(types[0].FullName, "Math.Adder");
+                }
+            }
+        }
     }
 }
