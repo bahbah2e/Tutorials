@@ -1,0 +1,13 @@
+GET http://127.0.0.1:8001/Services/Employee HTTP/1.1
+User-Agent: Fiddler
+Host: 127.0.0.1:8001
+Content-type: text/json
+
+
+HTTP/1.1 200 OK
+Content-Length: 52
+Content-Type: text/json; charset=utf-8
+Server: Microsoft-HTTPAPI/2.0
+Date: Thu, 27 Jun 2013 20:54:23 GMT
+
+[{"Id":1,"Name":"Don","Title":"Marketing Director"}]
