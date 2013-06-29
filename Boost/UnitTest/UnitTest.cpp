@@ -2,10 +2,17 @@
 //
 
 #include "stdafx.h"
+#include <boost/test/included/unit_test.hpp>
+#include "TestTarget.hpp"
 
+using namespace boost::unit_test;
 
-int _tmain(int argc, _TCHAR* argv[])
+test_suite* init_unit_test_suite( int argc, char* argv[] ) 
 {
-	return 0;
-}
+    test_suite* test = BOOST_TEST_SUITE("mt::fillhead : generic test suite");
 
+    test->add( BOOST_TEST_CASE( &TestEmployeeDefaultName ));
+    test->add( BOOST_TEST_CASE( &TestEmployeeDefaultTitle ));
+    
+    return test;
+}
