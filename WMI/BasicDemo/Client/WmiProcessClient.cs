@@ -1,49 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Client
+﻿namespace Client
 {
+    using System;
     using System.Management;
 
     public class WmiProcessClient
     {
-        private static ILog logger = LogManager.GetLogger(typeof(ConditionProcess));
-
         private const string QueryFindProcess = "SELECT * from Win32_Process where Caption='";
-        
-        private string queryProcess = "XMain.exe";
 
-        public ConditionProcess(string target)
+        private string queryProcess = "Notepad.exe";
+
+        public WmiProcessClient(string target)
         {
             this.queryProcess = target;
         }
 
         public bool Exists
         {
-            get { return IsProcessRunning; }
+            get { return this.IsProcessRunning; }
         }
 
-        private string QueryProcess
+        protected virtual void ProcessQueryException(Exception e)
         {
-            get { return QueryFindProcess + this.queryProcess + "'"; }
         }
-        
+
         private bool IsProcessRunning
         {
             get
             {
                 try
                 {
-                    using (ManagementObjectSearcher searchHmi = new ManagementObjectSearcher(QueryProcess))
+                    using (var searchProcess = new ManagementObjectSearcher(this.QueryProcess))
                     {
-                        using (ManagementObjectCollection searchResults = searchHmi.Get())
+                        using (ManagementObjectCollection searchResults = searchProcess.Get())
                         {
-                            if (searchResults.Count == 1)
+                            if (searchResults.Count > 0)
                             {
-                                logger.InfoFormat("Process {0} found.", this.queryProcess);
                                 return true;
                             }
                         }
@@ -51,12 +42,17 @@ namespace Client
                 }
                 catch (Exception e)
                 {
-                    logger.Info("Exception testing process status.", e);
+                    this.ProcessQueryException(e);
+                    throw;
                 }
 
-                logger.InfoFormat("Process {0} not found.", this.queryProcess);
                 return false;
             }
+        }
+
+        private string QueryProcess
+        {
+            get { return QueryFindProcess + this.queryProcess + "'"; }
         }
     }
 }
