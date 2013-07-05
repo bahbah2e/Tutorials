@@ -1,8 +1,10 @@
 ﻿namespace HttpClient.Test
 {
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Formatting;
+    using System.Threading.Tasks;
 
     using HttpClient.Model;
 
@@ -20,20 +22,12 @@
         public async void PutEmployee()
         {
             var client = new HttpClient();
-            var don = new Employee { Id = 1, Name = "Don", Title = "Marketing Director" };
+            var peggy = new Employee { Id = 2, Name = "Peggy", Title = "Marketing" };
 
-            MediaTypeFormatter jsonFormatter = new JsonMediaTypeFormatter();
-
-            try
-            {
-                HttpResponseMessage response = await client.PutAsync("http://localhost.:8001/employees", don, jsonFormatter);
-                response.EnsureSuccessStatusCode();
-            }
-            catch (Exception e)
-            {
-                string mes = e.Message;
-                throw;
-            }
+            HttpResponseMessage response = await client.GetAsync("http://E6400:8001/services/employee");
+            response.EnsureSuccessStatusCode();
+            IEnumerable<Employee> confirm = await response.Content.ReadAsAsync<IEnumerable<Employee>>();
+            int n = 0;
 
         }
     }
