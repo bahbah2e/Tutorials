@@ -1,5 +1,6 @@
 ﻿namespace HttpClient
 {
+    using System;
     using System.Net.Http;
     using System.Net.Http.Formatting;
 
@@ -14,8 +15,17 @@
 
             MediaTypeFormatter jsonFormatter = new JsonMediaTypeFormatter();
 
-            HttpResponseMessage response = await client.PutAsync("http://E6400:8001", don, jsonFormatter);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsync("http://localhost.:8001/employees", don, jsonFormatter);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception e)
+            {
+                string mes = e.Message;
+                throw;
+            }
+            
         }
     }
 }
