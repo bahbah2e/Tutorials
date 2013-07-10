@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="BasicSetup" Language="1033" Version="1.0.0.0" Manufacturer="Some Manufacturer" UpgradeCode="e069dd73-6763-4a2d-8ba1-c89411d3e9e9">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="BasicSetup" />
+        <Directory Id="ProgramMenuFolder">
+          <Directory Id="StartMenuBasicSetup" Name="Basic Setup" />
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="StartMenuBasicSetup">
+      <Component Id="Shortcut"
+                 Guid="1629C4BB-6672-4D7E-BF7A-A9D0AE60BDAA">
+
+        <Shortcut Id="DocumentationStartMenuShortcut"
+                  Name="Payload"
+                  Description="Install Payload"
+                  Target="[INSTALLFOLDER]Payload.txt" />
+
+        <RemoveFolder Id="StartMenuBasicSetup"
+                      On="uninstall" />
+
+        <RegistryValue Root="HKCU"
+                       Key="Software\Microsoft\BasicSetup"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent">
+        <File Name="Payload.txt" />
+      </Component>
+    </ComponentGroup>
+    
+    <Feature Id="ProductFeature" Title="BasicSetup" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="Shortcut" />
+    </Feature>
+  </Product>
+
+</Wix>
